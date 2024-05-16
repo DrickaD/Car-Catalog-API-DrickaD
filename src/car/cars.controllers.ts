@@ -41,5 +41,3 @@ export class CarsControllers{
         return res.status(status.HTTP_204_NO_CONTENT).json();
     }
 }
-
-// export const carsControllers = new CarsControllers();
