@@ -2,7 +2,9 @@
 import { injectable } from "tsyringe";
 import { prisma } from "../database/prisma";
 import { TCreateBodyCar, TReturBodyCar, TUpdateBodyCar, ReturnCarSchema } from "./index";
- 
+
+
+@injectable()
 export class CarsServices{
     public create = async (payload: TCreateBodyCar): Promise<TReturBodyCar> =>{
         const car = await prisma.car.create({data: payload});
@@ -43,7 +45,7 @@ export class CarsServices{
        return await prisma.car.delete({where: {id: idCars}});
     };
 
-}
+};
 
 export const carsServices = new CarsServices(); 
 

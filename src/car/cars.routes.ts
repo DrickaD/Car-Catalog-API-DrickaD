@@ -1,10 +1,14 @@
 import { Router } from "express";
-import { BodyCarSchema, BodyUpdateCarSchema, carsControllers } from './index';
+import { BodyCarSchema, BodyUpdateCarSchema, CarsControllers } from './index';
 import { ValidateRequest, isCarIdValid } from '../middlewares/index';
+import { container } from "tsyringe";
+import { CarsServices } from "./cars.services";
+
 
 export const carsRoutes = Router();
 
-
+container.registerSingleton("carsServices", CarsServices);
+const carsControllers = container.resolve(CarsControllers);
 
 carsRoutes.post("/",
 ValidateRequest.execute({body: BodyCarSchema}),
